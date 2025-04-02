@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navbar } from './components/NavBar'; // Importando o Navbar
+import { Home } from './components/Home'; // Importando Home
+import { Sobre } from './components/Sobre'; // Importando Sobre
+import { Projetos } from './components/Projetos'; // Importando Projetos
+import { Contato } from './components/Contato'; // Importando Contato
+import { ScrollToTopButton } from './components/ScrollToTopButton'; // Botão de Scroll
+import { Chatbot } from './components/Chatbot'; // Importando Chatbot
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* Barra de navegação */}
+      <Navbar />
+      {/* Seções principais */}
+      <Home />
+      <Sobre />
+      <Projetos />
+      <Contato />
+      {/* Botão de rolar para o topo */}
+      <ScrollToTopButton />
+      {/* Chatbot sempre disponível */}
+      <Chatbot />
+    </>
   );
-}
+};
 
 export default App;

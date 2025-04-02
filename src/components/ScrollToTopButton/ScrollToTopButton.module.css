@@ -1,0 +1,41 @@
+/* Botão fixado no canto inferior direito */
+.scrollButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(to right, var(--title-color), var(--subtitle-color)); /* Gradiente global */
+    color: white;
+    padding: 1rem;
+    border-radius: 50%; /* Torna o botão circular */
+    box-shadow: var(--shadow); /* Sombra global */
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 1000; /* Mantém o botão acima de outros elementos */
+  }
+  
+  /* Efeito hover para o botão */
+  .scrollButton:hover {
+    transform: scale(1.1); /* Aumenta o botão no hover */
+    background: linear-gradient(to right, var(--subtitle-color), black); /* Gradiente diferente no hover */
+  }
+  
+  /* Ícone dentro do botão */
+  .icon {
+    width: 24px; /* Tamanho do ícone */
+    height: 24px;
+  }
+  
+  /* Responsividade: Ajustar o botão em dispositivos menores */
+  @media (max-width: 768px) {
+    .scrollButton {
+      bottom: 1rem; /* Ajusta a posição em telas pequenas */
+      right: 1rem;
+      padding: 0.8rem; /* Reduz o padding */
+    }
+  
+    .icon {
+      width: 20px; /* Ícone menor em telas pequenas */
+      height: 20px;
+    }
+  }

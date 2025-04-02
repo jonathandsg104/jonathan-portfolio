@@ -1,0 +1,114 @@
+/* Estilos principais da seção Home */
+.home {
+  font-family: var(--font-family); /* Fonte global */
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  box-shadow: var(--shadow); /* Sombra global */
+  margin: 15px ; /* Margem ajustada para centralizar */
+  text-align: center;
+}
+
+/* Estilo do título */
+.title {
+  font-size: var(--title-size); /* Tamanho do título global */
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--title-color); /* Cor do título global */
+}
+
+/* Mensagem animada */
+.message {
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Ícone ao lado do título */
+.icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+/* Banner azul */
+.banner {
+  background-color: var(--title-color); /* Cor do banner reutilizando a cor do título */
+  color: white;
+  padding: 1rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+/* Texto dentro do banner */
+.bannerText {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Container da imagem interativa */
+.imageContainer {
+  display: flex;
+  flex-direction: column; /* Organiza o texto abaixo da imagem */
+  align-items: center; /* Centraliza horizontalmente */
+  cursor: pointer; /* Indica interatividade */
+  margin-top: 1.5rem;
+}
+
+/* Foto de Jonathan interativa */
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circular */
+  box-shadow: var(--shadow); /* Sombra global */
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+}
+
+.profileImage:hover {
+  transform: scale(1.1); /* Aumenta levemente ao passar o mouse */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Destaca a sombra no hover */
+}
+
+/* Informação de clique */
+.clickInfo {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: var(--subtitle-color);
+  text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .banner {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .title {
+    font-size: 2rem; /* Reduz tamanho do título */
+  }
+  .profileImage {
+    width: 120px;
+    height: 120px; /* Reduz tamanho da imagem */
+  }
+  .clickInfo {
+    font-size: 0.9rem; /* Ajusta o texto de instrução */
+  }
+}
+
+/* Animação do banner */
+.banner {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    background-color: var(--title-color);
+  }
+  50% {
+    background-color: #0056b3; /* Adiciona um azul mais escuro */
+  }
+}

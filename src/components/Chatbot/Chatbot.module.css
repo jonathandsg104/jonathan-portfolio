@@ -1,0 +1,144 @@
+/* Estilo geral do chatbot */
+.chatbot {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  width: 350px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Cabeçalho do chatbot */
+.header {
+  background-color: #0056b3;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.controls {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.minimizeButton, .closeButton {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.minimizeButton:hover, .closeButton:hover {
+  color: #ffcccb;
+}
+
+/* Conteúdo do chat */
+.chatContent {
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+}
+
+.message {
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.message:nth-child(odd) {
+  background-color: #e6f4ff; /* Mensagens do bot */
+  color: #0056b3;
+  text-align: left;
+}
+
+.message:nth-child(even) {
+  background-color: #d1f7d6; /* Mensagens do usuário */
+  color: #2d572c;
+  text-align: right;
+}
+
+/* Área de entrada */
+.inputArea {
+  display: flex;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  border-color: #0056b3;
+}
+
+.sendButton {
+  background-color: #0056b3;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sendButton:hover {
+  background-color: #003a80;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .chatbot {
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+  }
+
+  .header {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .input {
+    font-size: 0.9rem;
+  }
+
+  .sendButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+

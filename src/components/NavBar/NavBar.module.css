@@ -1,0 +1,96 @@
+/* Estilos principais do Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--title-color); /* Cor do título global (usando o azul padrão) */
+  color: white;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  box-shadow: var(--shadow); /* Sombra global */
+
+  /* Adiciona espaçamento ao redor */
+  margin: 15px; /* Espaçamento igual em todos os lados */
+}
+
+.navbarLogo {
+  font-size: 1.5rem; /* Pode ser variável, se reutilizado */
+  font-weight: bold;
+}
+
+.navbarHighlight {
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius); 
+}
+
+/* Botão do menu (hambúrguer) */
+.navbarToggle {
+  display: none; /* Escondido em telas maiores */
+}
+
+.navbarToggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Ícones */
+.icon {
+  width: 24px; /* Ícones reutilizam o mesmo tamanho */
+  height: 24px;
+}
+
+/* Links do menu */
+.navbarLinks {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navbarLinks li {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.navLink img {
+  margin-right: 0.5rem;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+/* Menu recolhido em dispositivos menores */
+.menuOpen {
+  display: flex !important;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .navbarToggle {
+    display: block; /* Botão hambúrguer visível em telas menores */
+  }
+
+  .navbarLinks {
+    display: none; /* Escondido por padrão */
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .menuOpen {
+    display: flex;
+  }
+}

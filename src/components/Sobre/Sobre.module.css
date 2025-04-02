@@ -1,0 +1,62 @@
+/* Container principal */
+.sobre {
+  font-family: var(--font-family); /* Fonte global */
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  box-shadow: var(--shadow); /* Sombra global */
+  margin: 15px; /* Espaçamento vertical e horizontal */
+  text-align: left;
+}
+
+/* Estilo para o título principal */
+.title {
+  font-size: var(--title-size); /* Tamanho do título global */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--title-color); /* Cor do título global */
+  margin-bottom: 1rem;
+}
+
+/* Ícones */
+.icon {
+  width: 32px; /* Tamanho padrão do ícone */
+  height: 32px;
+  margin-right: 0.5rem;
+}
+
+/* Estilo para subtítulos */
+.subtitle {
+  font-size: var(--subtitle-size); /* Tamanho do subtítulo global */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: var(--subtitle-color); /* Cor do subtítulo global */
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* Cartões de informação */
+.card {
+  background-color: var(--card-bg); /* Fundo reutilizável */
+  padding: 1rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  border: 1px solid #e0e0e0; /* Cor fixa para bordas */
+  box-shadow: var(--shadow); /* Sombra global */
+  margin-bottom: 1rem;
+}
+
+/* Datas em experiências */
+.date {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  color: #666; /* Cor fixa para datas */
+}
+
+/* Listas */
+.card ul {
+  padding-left: 1.5rem; /* Espaçamento interno à esquerda */
+  list-style-type: disc; /* Marcador de lista */
+}
