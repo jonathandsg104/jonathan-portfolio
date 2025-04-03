@@ -1,145 +1,254 @@
 /* Container principal */
 .projetos {
-    font-family: var(--font-family); /* Fonte global */
-    background-color: white;
-    padding: 2rem;
-    border-radius: var(--border-radius); /* Borda arredondada global */
-    box-shadow: var(--shadow); /* Sombra global */
-    margin: 15px;
-    text-align: left;
-  }
-  
-  /* Título */
-  .title {
-    font-size: var(--title-size); /* Tamanho global */
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--title-color); /* Cor global */
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Ícone */
-  .icon {
-    width: 32px; /* Tamanho do ícone */
-    height: 32px;
-    margin-right: 0.5rem;
-  }
-  
-  /* Botões */
-  .loginButton {
-    background-color: var(--title-color);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .loginButton:hover {
-    background-color: black;
-  }
-  
-  .addButton {
-    background-color: #28a745;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .addButton:hover {
-    background-color: black;
-  }
-  
-  .deleteButton {
-    background-color: transparent;
-    color: var(--subtitle-color);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .deleteButton:hover {
-    text-decoration: underline;
-  }
-  
-  /* Ícones pequenos */
-  .iconSmall {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
-  }
-  
-  /* Grid de Projetos */
+  font-family: var(--font-family); /* Fonte global */
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  box-shadow: var(--shadow); /* Sombra global */
+  margin: 15px;
+  text-align: left;
+}
+
+/* Título */
+.title {
+  font-size: var(--title-size); /* Tamanho global */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--title-color); /* Cor global */
+  margin-bottom: 1.5rem;
+}
+
+/* Ícone */
+.icon {
+  width: 32px; /* Tamanho do ícone */
+  height: 32px;
+  margin-right: 0.5rem;
+}
+
+/* Botões */
+.loginButton {
+  background-color: var(--title-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: black;
+}
+
+.addButton {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: black;
+}
+
+.deleteButton {
+  background-color: transparent;
+  color: var(--subtitle-color);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.deleteButton:hover {
+  text-decoration: underline;
+}
+
+/* Ícones pequenos */
+.iconSmall {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+}
+
+/* Grid de Projetos */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Uma coluna por padrão */
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
   .grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Uma coluna por padrão */
-    gap: 1.5rem;
-  }
-  
-  @media (min-width: 768px) {
-    .grid {
       grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas médias */
-    }
   }
-  
-  @media (min-width: 1024px) {
-    .grid {
+}
+
+@media (min-width: 1024px) {
+  .grid {
       grid-template-columns: repeat(3, 1fr); /* Três colunas em telas grandes */
-    }
   }
+}
+
+/* Cartões de Projetos */
+.card {
+  background-color: var(--card-bg); /* Fundo global */
+  padding: 1.5rem; /* Espaçamento interno */
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  border: 1px solid #e0e0e0;
+  box-shadow: var(--shadow); /* Sombra global */
+  display: flex; /* Define o layout flexível */
+  flex-direction: column; /* Alinha os itens verticalmente */
+  justify-content: center; /* Centraliza os itens verticalmente */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  text-align: center; /* Centraliza o texto */
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Efeito hover */
+}
+
+/* Título do projeto */
+.projectTitle {
+  font-size: var(--subtitle-size); /* Tamanho global para subtítulos */
+  font-weight: bold;
+  margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+/* Descrição do projeto */
+.projectDescription {
+  font-size: 1rem;
+  margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+/* Link do projeto */
+.projectLink {
+  color: var(--title-color); /* Cor do título global */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.projectLink:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Conteúdo do modal */
+.modalCard {
+  background: #ffffff; /* Fundo branco */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Input do modal */
+.modalInput, .modalTextarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Textarea para descrição */
+.modalTextarea {
+  resize: none; /* Desativa o redimensionamento */
+  height: 100px;
+}
+
+/* Botão de confirmação */
+.modalButton {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalButton:hover {
+  background-color: #45a049;
+}
+
+/* Botão de cancelar */
+.modalCancel {
+  background-color: #f44336; /* Vermelho */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.modalCancel:hover {
+  background-color: #d32f2f;
+}
+
+/* Animação de entrada para o modal */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Responsividade para o modal em dispositivos menores */
+@media (max-width: 768px) {
+  .modalCard {
+      width: 90%; /* Ajusta o tamanho do modal para telas menores */
+      padding: 1.5rem; /* Reduz o espaçamento interno */
+  }
+
+  /* Inputs e Textarea */
+  .modalInput, .modalTextarea {
+      font-size: 0.9rem; /* Ajusta o tamanho do texto */
+      padding: 8px; /* Reduz o espaçamento interno */
+  }
+
+  /* Botões do modal */
+  .modalButton, .modalCancel {
+      padding: 8px 15px; /* Menor espaçamento nos botões */
+      font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+  }
+}
+
   
-  /* Cartões de Projetos */
-  .card {
-    background-color: var(--card-bg); /* Fundo global */
-    padding: 1.5rem; /* Espaçamento interno */
-    border-radius: var(--border-radius); /* Borda arredondada global */
-    border: 1px solid #e0e0e0;
-    box-shadow: var(--shadow); /* Sombra global */
-    display: flex; /* Define o layout flexível */
-    flex-direction: column; /* Alinha os itens verticalmente */
-    justify-content: center; /* Centraliza os itens verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    text-align: center; /* Centraliza o texto */
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Efeito hover */
-  }
-  
-  /* Título do projeto */
-  .projectTitle {
-    font-size: var(--subtitle-size); /* Tamanho global para subtítulos */
-    font-weight: bold;
-    margin-bottom: 1rem; /* Espaçamento inferior */
-  }
-  
-  /* Descrição do projeto */
-  .projectDescription {
-    font-size: 1rem;
-    margin-bottom: 1rem; /* Espaçamento inferior */
-  }
-  
-  /* Link do projeto */
-  .projectLink {
-    color: var(--title-color); /* Cor do título global */
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .projectLink:hover {
-    text-decoration: underline;
-  }

@@ -13,6 +13,8 @@ interface Projeto {
 const Projetos: FC = () => {
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [newProject, setNewProject] = useState<Partial<Projeto>>({});
 
   useEffect(() => {
     const loadProjects = async (): Promise<void> => {
@@ -29,20 +31,41 @@ const Projetos: FC = () => {
     loadProjects();
   }, []);
 
-  const handleLogin = (): void => {
+  const handleLogin = async (): Promise<void> => {
     const password = prompt('Digite a senha de administrador:');
-    if (password === 'Galoplacas2025') {
-      alert('Login bem-sucedido!');
-      setIsAdmin(true);
-    } else {
-      alert('Senha incorreta!');
+    if (!password) {
+      alert('Senha não fornecida!');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+      if (data.isAdmin) {
+        alert('Login bem-sucedido!');
+        setIsAdmin(true);
+      } else {
+        alert('Senha incorreta!');
+      }
+    } catch (error) {
+      console.error('Erro na autenticação:', error);
+      alert('Erro ao autenticar. Tente novamente mais tarde.');
     }
   };
 
+  const handleModalChange = (field: keyof Projeto, value: string): void => {
+    setNewProject((prev) => ({ ...prev, [field]: value }));
+  };
+
   const adicionarProjeto = async (): Promise<void> => {
-    const title = prompt('Digite o título do projeto:')?.trim();
-    const description = prompt('Digite a descrição do projeto:')?.trim();
-    const url = prompt('Digite o link (opcional):')?.trim();
+    const { title, description, url } = newProject;
 
     if (!title || !description) {
       alert('Título e descrição são obrigatórios!');
@@ -62,6 +85,7 @@ const Projetos: FC = () => {
       console.error('Erro ao adicionar projeto:', error);
       alert('Erro ao adicionar projeto.');
     }
+    setShowModal(false); // Fecha o modal após adicionar o projeto
   };
 
   const deletarProjeto = async (id: string): Promise<void> => {
@@ -90,9 +114,45 @@ const Projetos: FC = () => {
       )}
 
       {isAdmin && (
-        <button onClick={adicionarProjeto} className={styles.addButton}>
-          Adicionar Projeto
-        </button>
+        <>
+          <button onClick={() => setShowModal(true)} className={styles.addButton}>
+            Adicionar Projeto
+          </button>
+
+          {showModal && (
+            <div className={styles.modal}>
+              <div className={styles.modalCard}>
+                <h2>Adicionar Novo Projeto</h2>
+                <input
+                  type="text"
+                  placeholder="Título"
+                  value={newProject.title || ''}
+                  onChange={(e) => handleModalChange('title', e.target.value)}
+                  className={styles.modalInput}
+                />
+                <textarea
+                  placeholder="Descrição"
+                  value={newProject.description || ''}
+                  onChange={(e) => handleModalChange('description', e.target.value)}
+                  className={styles.modalTextarea}
+                ></textarea>
+                <input
+                  type="url"
+                  placeholder="Link (opcional)"
+                  value={newProject.url || ''}
+                  onChange={(e) => handleModalChange('url', e.target.value)}
+                  className={styles.modalInput}
+                />
+                <button onClick={adicionarProjeto} className={styles.modalButton}>
+                  Confirmar
+                </button>
+                <button onClick={() => setShowModal(false)} className={styles.modalCancel}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       <div className={styles.grid}>
@@ -106,10 +166,7 @@ const Projetos: FC = () => {
               </a>
             )}
             {isAdmin && (
-              <button
-                onClick={() => deletarProjeto(projeto.id)}
-                className={styles.deleteButton}
-              >
+              <button onClick={() => deletarProjeto(projeto.id)} className={styles.deleteButton}>
                 <img src={TrashIcon} alt="Deletar" className={styles.iconSmall} />
               </button>
             )}
