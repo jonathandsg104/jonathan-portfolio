@@ -109,8 +109,9 @@ const Projetos: FC = () => {
 
       {!isAdmin && (
         <button onClick={handleLogin} className={styles.loginButton}>
-          Login de Administrador
-        </button>
+        <img src={require('../../assets/icons/login.png')} alt="Ícone de Login" className={styles.iconSmall} />
+        Login de Administrador
+      </button>
       )}
 
       {isAdmin && (
