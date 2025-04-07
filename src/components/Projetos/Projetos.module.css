@@ -7,6 +7,8 @@
   box-shadow: var(--shadow); /* Sombra global */
   margin: 15px;
   text-align: left;
+  position: relative; /* Necessário para os botões de scroll */
+  overflow: hidden; /* Garante que os botões fiquem dentro do container */
 }
 
 /* Título */
@@ -26,7 +28,6 @@
   height: 32px;
   margin-right: 0.5rem;
 }
-
 
 /* Botão de Login de Administrador */
 .loginButton {
@@ -58,8 +59,7 @@
   height: 24px; /* Ajusta o tamanho para não distorcer */
 }
 
-
-
+/* Botão de Adicionar Projeto */
 .addButton {
   background-color: #28a745;
   color: white;
@@ -77,6 +77,7 @@
   background-color: black;
 }
 
+/* Botão de Deletar Projeto */
 .deleteButton {
   background-color: transparent;
   color: var(--subtitle-color);
@@ -90,30 +91,41 @@
   text-decoration: underline;
 }
 
-/* Ícones pequenos */
-.iconSmall {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-}
-
-/* Grid de Projetos */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Uma coluna por padrão */
+/* Container de Scroll */
+.scrollContainer {
+  display: flex;
+  overflow-x: auto; /* Scroll apenas horizontal */
+  scroll-behavior: smooth; /* Scroll suave */
   gap: 1.5rem;
+  padding: 1rem 0;
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas médias */
-  }
+/* Botões de Scroll */
+.scrollButtons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%); /* Centraliza os botões verticalmente */
+  pointer-events: none; /* Impede interferências desnecessárias */
 }
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr); /* Três colunas em telas grandes */
-  }
+.scrollButton {
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  pointer-events: auto; /* Permite interações */
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+}
+
+.scrollButton:hover {
+  background: black;
 }
 
 /* Cartões de Projetos */
@@ -123,11 +135,14 @@
   border-radius: var(--border-radius); /* Borda arredondada global */
   border: 1px solid #e0e0e0;
   box-shadow: var(--shadow); /* Sombra inicial */
+  flex: 0 0 auto; /* Necessário para o layout flexível no scroll */
   display: flex; /* Define o layout flexível */
   flex-direction: column; /* Alinha os itens verticalmente */
   justify-content: center; /* Centraliza os itens verticalmente */
   align-items: center; /* Centraliza os itens horizontalmente */
   text-align: center; /* Centraliza o texto */
+  min-width: 300px; /* Largura mínima para cartões no scroll horizontal */
+  max-width: 400px;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
 }
 
@@ -136,20 +151,20 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
 }
 
-/* Título do projeto */
+/* Título do Projeto */
 .projectTitle {
   font-size: var(--subtitle-size); /* Tamanho global para subtítulos */
   font-weight: bold;
   margin-bottom: 1rem; /* Espaçamento inferior */
 }
 
-/* Descrição do projeto */
+/* Descrição do Projeto */
 .projectDescription {
   font-size: 1rem;
   margin-bottom: 1rem; /* Espaçamento inferior */
 }
 
-/* Link do projeto */
+/* Link do Projeto */
 .projectLink {
   color: var(--title-color); /* Cor do título global */
   text-decoration: none;
@@ -162,112 +177,22 @@
   text-decoration: underline;
 }
 
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Conteúdo do modal */
-.modalCard {
-  background: #ffffff; /* Fundo branco */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-  width: 400px;
-  max-width: 90%;
-  text-align: center;
-  animation: fadeIn 0.3s ease;
-}
-
-/* Input do modal */
-.modalInput, .modalTextarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-/* Textarea para descrição */
-.modalTextarea {
-  resize: none; /* Desativa o redimensionamento */
-  height: 100px;
-}
-
-/* Botão de confirmação */
-.modalButton {
-  background-color: #4CAF50; /* Verde */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.modalButton:hover {
-  background-color: #45a049;
-}
-
-/* Botão de cancelar */
-.modalCancel {
-  background-color: #f44336; /* Vermelho */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.modalCancel:hover {
-  background-color: #d32f2f;
-}
-
-/* Animação de entrada para o modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Responsividade para o modal em dispositivos menores */
+/* Responsividade */
 @media (max-width: 768px) {
   .modalCard {
     width: 90%; /* Ajusta o tamanho do modal para telas menores */
-    padding: 1.5rem; /* Reduz o espaçamento interno */
+    padding: 1.5rem;
   }
 
-  /* Inputs e Textarea */
-  .modalInput, .modalTextarea {
-    font-size: 0.9rem; /* Ajusta o tamanho do texto */
-    padding: 8px; /* Reduz o espaçamento interno */
+  .scrollButton {
+    padding: 8px; /* Botões menores em telas menores */
   }
 
-  /* Botões do modal */
-  .modalButton, .modalCancel {
-    padding: 8px 15px; /* Menor espaçamento nos botões */
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+  .card {
+    min-width: 250px; /* Largura mínima reduzida para o scroll horizontal */
   }
 }
+
 
 
   

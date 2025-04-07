@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import styles from './Projetos.module.css';
 import TrashIcon from '../../assets/icons/trash.png';
 import ProjectIcon from '../../assets/icons/project.png'; // Atualizado para project.png
@@ -16,6 +16,7 @@ const Projetos: FC = () => {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [newProject, setNewProject] = useState<Partial<Projeto>>({});
+  const scrollContainerRef = useRef<HTMLDivElement>(null); // Referência do container
 
   useEffect(() => {
     const loadProjects = async (): Promise<void> => {
@@ -31,6 +32,13 @@ const Projetos: FC = () => {
 
     loadProjects();
   }, []);
+
+  const handleScroll = (direction: 'left' | 'right'): void => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300; // Define a distância do scroll
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const handleLogin = async (): Promise<void> => {
     const password = prompt('Digite a senha de administrador:');
@@ -113,7 +121,11 @@ const Projetos: FC = () => {
 
       {!isAdmin && (
         <button onClick={handleLogin} className={styles.loginButton}>
-          <img src={require('../../assets/icons/login.png')} alt="Ícone de Login" className={styles.iconSmall} />
+          <img
+            src={require('../../assets/icons/login.png')}
+            alt="Ícone de Login"
+            className={styles.iconSmall}
+          />
           Login de Administrador
         </button>
       )}
@@ -148,25 +160,32 @@ const Projetos: FC = () => {
                   onChange={(e) => handleModalChange('url', e.target.value)}
                   className={styles.modalInput}
                 />
-                <button onClick={adicionarProjeto} className={styles.modalButton}>
-                  Confirmar
-                </button>
-                <button onClick={() => setShowModal(false)} className={styles.modalCancel}>
-                  Cancelar
-                </button>
+                <div className={styles.modalActions}>
+                  <button onClick={adicionarProjeto} className={styles.modalButton}>
+                    Confirmar
+                  </button>
+                  <button onClick={() => setShowModal(false)} className={styles.modalCancel}>
+                    Cancelar
+                  </button>
+                </div>
               </div>
             </div>
           )}
         </>
       )}
 
-      <div className={styles.grid}>
+      <div className={styles.scrollContainer} ref={scrollContainerRef}>
         {projetos.map((projeto) => (
           <div key={projeto.id} className={styles.card}>
             <h2 className={styles.projectTitle}>{projeto.title}</h2>
             <p className={styles.projectDescription}>{projeto.description}</p>
             {projeto.url && (
-              <a href={projeto.url} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+              <a
+                href={projeto.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.projectLink}
+              >
                 Visitar
               </a>
             )}
@@ -178,6 +197,23 @@ const Projetos: FC = () => {
           </div>
         ))}
       </div>
+
+      {projetos.length > 3 && (
+        <div className={styles.scrollButtons}>
+          <button
+            className={styles.scrollButton}
+            onMouseEnter={() => handleScroll('left')}
+          >
+            &#8249;
+          </button>
+          <button
+            className={styles.scrollButton}
+            onMouseEnter={() => handleScroll('right')}
+          >
+            &#8250;
+          </button>
+        </div>
+      )}
     </section>
   );
 };
