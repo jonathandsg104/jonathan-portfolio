@@ -1,86 +1,110 @@
 /* Container principal */
 .contato {
-    font-family: var(--font-family); /* Fonte global */
-    background-color: var(--title-color); /* Fundo azul global */
-    color: white; /* Texto branco */
-    padding: 2rem;
-    border-radius: var(--border-radius); /* Borda arredondada global */
-    box-shadow: var(--shadow); /* Sombra global */
-    margin: 15px ;
-    text-align: center;
+  font-family: var(--font-family); /* Fonte global */
+  background-color: var(--title-color); /* Fundo azul global */
+  color: white; /* Texto branco */
+  padding: 2rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  box-shadow: var(--shadow); /* Sombra global */
+  margin: 15px;
+  text-align: center;
+}
+
+/* Texto do cabeçalho */
+.text {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Links sociais */
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os links ocupem mais espaço em telas menores */
+  justify-content: center;
+  gap: 1rem; /* Espaçamento entre os itens */
+}
+
+/* Item individual do link */
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaçamento entre ícone e texto */
+}
+
+/* Ícones */
+.icon {
+  width: 32px; /* Tamanho padrão do ícone */
+  height: 32px;
+}
+
+/* Estilo do link */
+.link {
+  color: white; /* Cor do texto */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius); /* Borda arredondada global */
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Estilo do footer */
+.footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Linha sutil para separar o footer */
+  font-size: 0.9rem; /* Texto menor */
+  color: rgba(255, 255, 255, 0.8); /* Branco com opacidade */
+  text-align: center;
+}
+
+.footer p {
+  margin: 0.5rem 0; /* Espaçamento entre parágrafos */
+}
+
+.footer strong {
+  color: white; /* Destaque para o autor */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  /* Ajustar o container para telas menores */
+  .contato {
+    padding: 1rem; /* Reduz o espaçamento interno */
+    margin: 10px; /* Reduz as margens */
   }
-  
-  /* Texto do cabeçalho */
+
+  /* Texto mais ajustado em dispositivos menores */
   .text {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem; /* Texto menor */
+    margin-bottom: 1rem; /* Menos espaçamento inferior */
   }
-  
-  /* Links sociais */
+
+  /* Links sociais reorganizados verticalmente */
   .socialLinks {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os links ocupem mais espaço em telas menores */
-    justify-content: center;
-    gap: 1rem; /* Espaçamento entre os itens */
+    flex-direction: column; /* Disposição vertical */
+    gap: 0.75rem; /* Espaçamento menor entre os links */
   }
-  
-  /* Item individual do link */
-  .linkItem {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Espaçamento entre ícone e texto */
-  }
-  
-  /* Ícones */
+
+  /* Ícones menores para otimização visual */
   .icon {
-    width: 32px; /* Tamanho padrão do ícone */
-    height: 32px;
+    width: 24px; /* Ícones ajustados para telas pequenas */
+    height: 24px;
   }
-  
-  /* Estilo do link */
+
+  /* Estilo do link adaptado */
   .link {
-    color: white; /* Cor do texto */
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius); /* Borda arredondada global */
-    transition: background-color 0.3s ease;
+    padding: 0.4rem 0.8rem; /* Reduz o espaçamento interno */
+    font-size: 0.9rem; /* Fonte menor */
   }
-  
-  .link:hover {
-    background-color: black;
-    color: white;
+
+  /* Footer ajustado para dispositivos menores */
+  .footer {
+    font-size: 0.8rem; /* Texto menor no footer */
+    padding-top: 0.5rem; /* Reduz o espaçamento superior */
   }
-  
-  /* Estilos responsivos */
-  @media (max-width: 768px) {
-    /* Ajustar o container para telas menores */
-    .contato {
-      padding: 1rem; /* Reduz o espaçamento interno */
-      margin: 10px; /* Reduz as margens */
-    }
-  
-    /* Texto mais ajustado em dispositivos menores */
-    .text {
-      font-size: 0.9rem; /* Texto menor */
-      margin-bottom: 1rem; /* Menos espaçamento inferior */
-    }
-  
-    /* Links sociais reorganizados verticalmente */
-    .socialLinks {
-      flex-direction: column; /* Disposição vertical */
-      gap: 0.75rem; /* Espaçamento menor entre os links */
-    }
-  
-    /* Ícones menores para otimização visual */
-    .icon {
-      width: 24px; /* Ícones ajustados para telas pequenas */
-      height: 24px;
-    }
-  
-    /* Estilo do link adaptado */
-    .link {
-      padding: 0.4rem 0.8rem; /* Reduz o espaçamento interno */
-      font-size: 0.9rem; /* Fonte menor */
-    }
-  }
+}

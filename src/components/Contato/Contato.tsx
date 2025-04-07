@@ -81,6 +81,13 @@ const Contato: FC = () => {
           </a>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <p>Desenvolvido por <strong>Jonathan Gomes</strong></p>
+        <p>Endereço: Avenida Egidio Tomasi, 1645 - sala 03, Bela Vista, Jacinto Machado, SC, Brasil</p>
+        <p>Telefone: +55 48 99657-3094</p>
+      </footer>
     </section>
   );
 };

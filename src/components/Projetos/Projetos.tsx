@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './Projetos.module.css';
 import TrashIcon from '../../assets/icons/trash.png';
+import ProjectIcon from '../../assets/icons/project.png'; // Atualizado para project.png
 import { fetchProjects, addProject, deleteProject } from '../../firebaseService';
 
 interface Projeto {
@@ -105,13 +106,16 @@ const Projetos: FC = () => {
 
   return (
     <section id="projetos" className={styles.projetos}>
-      <h1 className={styles.title}>Meus Projetos</h1>
+      <h1 className={styles.title}>
+        <img src={ProjectIcon} alt="Ícone Projetos" className={styles.iconSmall} />
+        Meus Projetos
+      </h1>
 
       {!isAdmin && (
         <button onClick={handleLogin} className={styles.loginButton}>
-        <img src={require('../../assets/icons/login.png')} alt="Ícone de Login" className={styles.iconSmall} />
-        Login de Administrador
-      </button>
+          <img src={require('../../assets/icons/login.png')} alt="Ícone de Login" className={styles.iconSmall} />
+          Login de Administrador
+        </button>
       )}
 
       {isAdmin && (
