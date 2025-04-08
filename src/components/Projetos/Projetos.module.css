@@ -177,10 +177,93 @@
   text-decoration: underline;
 }
 
+/* Estilo para o modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+}
+
+/* Card no centro do modal */
+.modalCard {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input no modal */
+.modalInput,
+.modalTextarea {
+  width: 90%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modalInput:focus,
+.modalTextarea:focus {
+  border-color: #0056b3;
+}
+
+/* Ações no modal */
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modalButton {
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.modalButton:hover {
+  background-color: #003a80;
+}
+
+.modalCancel {
+  background-color: #ff4d4d;
+  color: #ffffff;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.modalCancel:hover {
+  background-color: #cc0000;
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
   .modalCard {
-    width: 90%; /* Ajusta o tamanho do modal para telas menores */
+    width: 70%; /* Ajusta o tamanho do modal para telas menores */
     padding: 1.5rem;
   }
 
@@ -192,6 +275,8 @@
     min-width: 250px; /* Largura mínima reduzida para o scroll horizontal */
   }
 }
+
+
 
 
 
