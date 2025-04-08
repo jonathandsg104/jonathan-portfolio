@@ -130,7 +130,7 @@
 
 /* Cartões de Projetos */
 .card {
-  background-color: var(--card-bg); /* Fundo global */
+  background-color: --var(--title-color); /* Fundo global */
   padding: 1.5rem; /* Espaçamento interno */
   border-radius: var(--border-radius); /* Borda arredondada global */
   border: 1px solid #e0e0e0;
