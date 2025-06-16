@@ -3,13 +3,17 @@ import styles from './Chatbot.module.css'; // Estilos modulares
 import fotoJonathan from '../Home/image/foto-jonathan.png'; // Caminho corrigido para a foto
 import Fuse from 'fuse.js';
 
-const Chatbot: React.FC = () => {
+interface ChatbotProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<string[]>([
     "**👋 Olá!** Sou Jonathan, seu assistente virtual. Pergunte-me algo sobre meu currículo, projetos ou contato!"
   ]);
   const [inputValue, setInputValue] = useState<string>("");
   const [isMinimized, setIsMinimized] = useState<boolean>(false); // Controla o estado de minimização
-  const [isOpen, setIsOpen] = useState<boolean>(true); // Controla se o chatbot está aberto
 
   // Mapear palavras-chave relacionadas a um único texto
   const responseMap: { keywords: string[]; response: string }[] = [
@@ -153,7 +157,7 @@ const Chatbot: React.FC = () => {
   };
 
   const handleCloseChat = () => {
-    setIsOpen(false); // Fecha o chatbot completamente
+    onClose(); // Usa a função passada como prop para fechar o chatbot
   };
 
   const handleToggleMinimize = () => {

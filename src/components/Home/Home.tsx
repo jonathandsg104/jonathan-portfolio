@@ -1,14 +1,15 @@
 import React, { useEffect, useState, FC } from 'react';
-import HomeIcon from '../../assets/icons/home.png'; // Ícone da casa
-import fotoJonathan from './image/foto-jonathan.png'; // Foto de Jonathan
-import Chatbot from '../Chatbot/Chatbot'; // Importando o componente do chatbot
-import styles from './Home.module.css'; // Importando os estilos CSS Modules
+import { HomeIcon } from '../../assets/icons';
+import fotoJonathan from './image/foto-jonathan.png';
+import styles from './Home.module.css';
 
-const Home: FC = () => {
-  const [text, setText] = useState<string>(''); // Estado para texto animado
-  const [isChatOpen, setIsChatOpen] = useState(false); // Estado para abrir/fechar o chatbot
-  const message: string =
-    'A tecnologia é a arte de transformar o impossível em realidade.'; // Texto animado no banner
+interface HomeProps {
+  onOpenChatbot: () => void;
+}
+
+const Home: FC<HomeProps> = ({ onOpenChatbot }) => {
+  const [text, setText] = useState<string>('');
+  const message: string = 'A tecnologia é a arte de transformar o impossível em realidade.';
 
   // Efeito para exibir o texto de forma animada
   useEffect(() => {
@@ -17,16 +18,29 @@ const Home: FC = () => {
       setText(message.substring(0, index + 1));
       index++;
       if (index === message.length) {
-        clearInterval(intervalId); // Para a animação ao terminar
+        clearInterval(intervalId);
       }
     }, 100);
 
-    return () => clearInterval(intervalId); // Limpa o intervalo para evitar vazamentos
+    return () => clearInterval(intervalId);
   }, [message]);
 
-  // Alterna o estado do chatbot
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+  // Função para abrir o chatbot e rolar até ele
+  const handleChatbotClick = (): void => {
+    onOpenChatbot(); // Abre o chatbot
+    
+    // Aguarda um pouco para o chatbot renderizar e então rola até ele
+    setTimeout(() => {
+      const chatbotElement = document.querySelector('[class*="chatbot"]');
+      if (chatbotElement) {
+        chatbotElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        // Adiciona uma pequena animação visual para chamar atenção
+        chatbotElement.classList.add('highlight');
+        setTimeout(() => {
+          chatbotElement.classList.remove('highlight');
+        }, 2000);
+      }
+    }, 100);
   };
 
   return (
@@ -43,19 +57,51 @@ const Home: FC = () => {
       </div>
 
       {/* Foto de Jonathan interativa */}
-      <div className={styles.imageContainer} onClick={toggleChat}>
+      <div className={styles.imageContainer}>
         <img
           src={fotoJonathan}
-          alt="Foto de Jonathan"
+          alt="Foto de Jonathan da Silva Gomes"
           className={styles.profileImage}
+          onClick={handleChatbotClick}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleChatbotClick();
+            }
+          }}
         />
-        <p className={styles.clickInfo}>Clique na foto para falar comigo no Chatbot!</p>
+        <p className={styles.clickInfo}>
+          Clique na foto para interagir com o Chatbot!
+        </p>
       </div>
 
-      {/* Chatbot visível quando ativado */}
-      {isChatOpen && <Chatbot />}
+      {/* Seção de apresentação */}
+      <div className={styles.introduction}>
+        <h2 className={styles.subtitle}>Jonathan da Silva Gomes</h2>
+        <p className={styles.description}>
+          Desenvolvedor Full Stack apaixonado por tecnologia e inovação. 
+          Especializado em JavaScript, React, Node.js e desenvolvimento mobile.
+        </p>
+        <div className={styles.highlights}>
+          <div className={styles.highlight}>
+            <span className={styles.highlightNumber}>3+</span>
+            <span className={styles.highlightText}>Anos de Experiência</span>
+          </div>
+          <div className={styles.highlight}>
+            <span className={styles.highlightNumber}>10+</span>
+            <span className={styles.highlightText}>Projetos Concluídos</span>
+          </div>
+          <div className={styles.highlight}>
+            <span className={styles.highlightNumber}>100%</span>
+            <span className={styles.highlightText}>Dedicação</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
 
+export { Home };
 export default Home;

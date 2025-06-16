@@ -1,55 +1,92 @@
 /* Container principal */
 .contato {
-  font-family: var(--font-family); /* Fonte global */
-  background-color: var(--title-color); /* Fundo azul global */
-  color: white; /* Texto branco */
-  padding: 2rem;
-  border-radius: var(--border-radius); /* Borda arredondada global */
-  box-shadow: var(--shadow); /* Sombra global */
+  font-family: var(--font-family);
+  background-color: var(--title-color);
+  color: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   margin: 15px;
   text-align: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Título */
+.title {
+  font-size: var(--title-size);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  color: white;
+}
+
+/* Ícone do título */
+.titleIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: var(--spacing-sm);
+  filter: brightness(0) invert(1); /* Torna o ícone branco */
 }
 
 /* Texto do cabeçalho */
 .text {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: var(--text-size);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Links sociais */
 .socialLinks {
-  display: flex;
-  flex-wrap: wrap; /* Permite que os links ocupem mais espaço em telas menores */
-  justify-content: center;
-  gap: 1rem; /* Espaçamento entre os itens */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Item individual do link */
 .linkItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Espaçamento entre ícone e texto */
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-normal);
+}
+
+.linkItem:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 /* Ícones */
 .icon {
-  width: 32px; /* Tamanho padrão do ícone */
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 /* Estilo do link */
 .link {
-  color: white; /* Cor do texto */
+  color: white;
   text-decoration: none;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius); /* Borda arredondada global */
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  font-size: var(--text-size);
+  transition: color var(--transition-fast);
 }
 
 .link:hover {
-  background-color: black;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Estilo do footer */
@@ -72,39 +109,63 @@
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-  /* Ajustar o container para telas menores */
   .contato {
-    padding: 1rem; /* Reduz o espaçamento interno */
-    margin: 10px; /* Reduz as margens */
+    padding: var(--spacing-md);
+    margin: 10px;
   }
 
-  /* Texto mais ajustado em dispositivos menores */
+  .title {
+    font-size: 1.75rem;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .titleIcon {
+    margin-right: 0;
+    margin-bottom: var(--spacing-xs);
+  }
+
   .text {
-    font-size: 0.9rem; /* Texto menor */
-    margin-bottom: 1rem; /* Menos espaçamento inferior */
+    font-size: var(--small-text);
+    margin-bottom: var(--spacing-md);
   }
 
-  /* Links sociais reorganizados verticalmente */
   .socialLinks {
-    flex-direction: column; /* Disposição vertical */
-    gap: 0.75rem; /* Espaçamento menor entre os links */
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
-  /* Ícones menores para otimização visual */
+  .linkItem {
+    padding: var(--spacing-sm);
+  }
+
   .icon {
-    width: 24px; /* Ícones ajustados para telas pequenas */
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
-  /* Estilo do link adaptado */
   .link {
-    padding: 0.4rem 0.8rem; /* Reduz o espaçamento interno */
-    font-size: 0.9rem; /* Fonte menor */
+    font-size: var(--small-text);
   }
 
-  /* Footer ajustado para dispositivos menores */
   .footer {
-    font-size: 0.8rem; /* Texto menor no footer */
-    padding-top: 0.5rem; /* Reduz o espaçamento superior */
+    font-size: var(--small-text);
+    padding-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .contato {
+    padding: var(--spacing-sm);
+    margin: 5px;
+  }
+
+  .socialLinks {
+    gap: var(--spacing-sm);
+  }
+
+  .footer p {
+    margin: var(--spacing-xs) 0;
   }
 }

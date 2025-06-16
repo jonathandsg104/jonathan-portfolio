@@ -128,27 +128,79 @@
   background: black;
 }
 
+/* Grid de Projetos */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
 /* Cartões de Projetos */
 .card {
-  background-color: --var(--title-color); /* Fundo global */
-  padding: 1.5rem; /* Espaçamento interno */
-  border-radius: var(--border-radius); /* Borda arredondada global */
-  border: 1px solid #e0e0e0;
-  box-shadow: var(--shadow); /* Sombra inicial */
-  flex: 0 0 auto; /* Necessário para o layout flexível no scroll */
-  display: flex; /* Define o layout flexível */
-  flex-direction: column; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza os itens verticalmente */
-  align-items: center; /* Centraliza os itens horizontalmente */
-  text-align: center; /* Centraliza o texto */
-  min-width: 300px; /* Largura mínima para cartões no scroll horizontal */
-  max-width: 400px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+  background-color: var(--card-bg);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
 }
 
 .card:hover {
-  transform: scale(1.05) rotateZ(1deg); /* Aumenta e dá uma leve rotação */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.deleteButton {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: 50%;
+  transition: background-color var(--transition-fast);
+}
+
+.deleteButton:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.titleIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: var(--spacing-sm);
+}
+
+/* Estados */
+.loading, .error, .emptyState {
+  text-align: center;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-lg) 0;
+}
+
+.loading {
+  color: var(--title-color);
+  background-color: var(--bg-light);
+}
+
+.error {
+  color: var(--error-color);
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-color);
+}
+
+.emptyState {
+  color: var(--subtitle-color);
+  background-color: var(--bg-light);
+  font-style: italic;
 }
 
 /* Título do Projeto */
@@ -260,19 +312,35 @@
 }
 
 
+
 /* Responsividade */
 @media (max-width: 768px) {
+  .projetos {
+    padding: 1rem;
+    margin: 10px;
+  }
+
   .modalCard {
-    width: 70%; /* Ajusta o tamanho do modal para telas menores */
+    width: 90%;
     padding: 1.5rem;
   }
 
   .scrollButton {
-    padding: 8px; /* Botões menores em telas menores */
+    padding: 8px;
   }
 
   .card {
-    min-width: 250px; /* Largura mínima reduzida para o scroll horizontal */
+    min-width: 250px;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .loginButton {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
   }
 }
 

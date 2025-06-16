@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
-import SobremimIcon from '../../assets/icons/sobremim.png';
+import { SobreIcon } from '../../assets/icons';
 import FormacaoIcon from '../../assets/icons/formacao.png';
 import ExperienciaIcon from '../../assets/icons/experiencia.png';
 import CertificadosIcon from '../../assets/icons/certificados.png';
 import HabilidadesIcon from '../../assets/icons/habilidades.png';
 import CardIcon from '../../assets/icons/card.png';
-import styles from './Sobre.module.css'; // CSS module para esta seção
+import styles from './Sobre.module.css';
 
 const Sobre: FC = () => {
   return (
     <section id="sobre" className={styles.sobre}>
       {/* Seção Sobre Mim */}
       <h1 className={styles.title}>
-        <img src={SobremimIcon} alt="Sobre Mim" className={styles.icon} />
+        <img src={SobreIcon} alt="Sobre Mim" className={styles.icon} />
         Sobre Mim
       </h1>
       <div className={styles.card}>
@@ -107,4 +107,5 @@ const Sobre: FC = () => {
   );
 };
 
+export { Sobre };
 export default Sobre;

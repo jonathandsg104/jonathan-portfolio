@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, connectDatabaseEmulator } from "firebase/database"; // Adicione "connectDatabaseEmulator"
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -16,5 +16,8 @@ const firebaseConfig = {
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
+// Conectar ao Realtime Database Emulator
+connectDatabaseEmulator(db, "127.0.0.1", 9000); // Redireciona para o emulador na porta 9000
 
 export default db;

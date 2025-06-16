@@ -1,85 +1,100 @@
 import React, { FC } from 'react';
-import WhatsAppIcon from '../../assets/icons/whatsapp.png';
-import FacebookIcon from '../../assets/icons/facebook.png';
-import InstagramIcon from '../../assets/icons/instagram.png';
-import LinkedInIcon from '../../assets/icons/linkedin.png';
-import EmailIcon from '../../assets/icons/email.png';
-import GithubIcon from '../../assets/icons/github.png';
-import styles from './Contato.module.css'; // Importação do CSS modular
+import { 
+  ContactIcon,
+  WhatsAppIcon,
+  FacebookIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  EmailIcon,
+  GithubIcon
+} from '../../assets/icons';
+import styles from './Contato.module.css';
+
+interface ContactLink {
+  icon: string;
+  alt: string;
+  href: string;
+  label: string;
+  ariaLabel: string;
+}
 
 const Contato: FC = () => {
+  const contactLinks: ContactLink[] = [
+    {
+      icon: EmailIcon,
+      alt: 'Email',
+      href: 'mailto:jonathan.dsg104@gmail.com',
+      label: 'Email',
+      ariaLabel: 'Enviar email para Jonathan'
+    },
+    {
+      icon: WhatsAppIcon,
+      alt: 'WhatsApp',
+      href: 'https://wa.me/5548996573094',
+      label: 'WhatsApp',
+      ariaLabel: 'Conversar no WhatsApp'
+    },
+    {
+      icon: LinkedInIcon,
+      alt: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/jonathangomes104/',
+      label: 'LinkedIn',
+      ariaLabel: 'Visitar perfil no LinkedIn'
+    },
+    {
+      icon: GithubIcon,
+      alt: 'GitHub',
+      href: 'https://github.com/jonathandsg104',
+      label: 'GitHub',
+      ariaLabel: 'Visitar perfil no GitHub'
+    },
+    {
+      icon: FacebookIcon,
+      alt: 'Facebook',
+      href: 'https://www.facebook.com/share/1EfUR15yXX/',
+      label: 'Facebook',
+      ariaLabel: 'Visitar perfil no Facebook'
+    },
+    {
+      icon: InstagramIcon,
+      alt: 'Instagram',
+      href: 'https://www.instagram.com/jonathangomes104?igsh=MXYyZmttY2M2NG9ocg==',
+      label: 'Instagram',
+      ariaLabel: 'Visitar perfil no Instagram'
+    }
+  ];
+
   return (
     <section id="contato" className={styles.contato}>
+      <h1 className={styles.title}>
+        <img src={ContactIcon} alt="Ícone Contato" className={styles.titleIcon} />
+        Entre em Contato
+      </h1>
+      
       <p className={styles.text}>
-        Se você gostaria de entrar em contato comigo, pode me encontrar nas seguintes plataformas:
+        Vamos conversar! Entre em contato comigo através das seguintes plataformas:
       </p>
-      <div className={styles.socialLinks}>
-        <div className={styles.linkItem}>
-          <img src={EmailIcon} alt="Email" className={styles.icon} />
-          <a
-            href="mailto:jonathan.dsg104@hotmail.com"
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Email
-          </a>
-        </div>
-        <div className={styles.linkItem}>
-          <img src={WhatsAppIcon} alt="WhatsApp" className={styles.icon} />
-          <a
-            href="https://wa.me/5548996573094"
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
-        </div>
-        <div className={styles.linkItem}>
-          <img src={FacebookIcon} alt="Facebook" className={styles.icon} />
-          <a
-            href="https://www.facebook.com/share/1EfUR15yXX/"
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Facebook
-          </a>
-        </div>
-        <div className={styles.linkItem}>
-          <img src={InstagramIcon} alt="Instagram" className={styles.icon} />
-          <a
-            href="https://www.instagram.com/jonathangomes104?igsh=MXYyZmttY2M2NG9ocg=="
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
-        </div>
-        <div className={styles.linkItem}>
-          <img src={GithubIcon} alt="GitHub" className={styles.icon} />
-          <a
-            href="https://github.com/jonathandsg104"
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
-        <div className={styles.linkItem}>
-          <img src={LinkedInIcon} alt="LinkedIn" className={styles.icon} />
-          <a
-            href="https://www.linkedin.com/in/jonathangomes104/"
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-        </div>
+      
+      <div className={styles.socialLinks} role="list" aria-label="Links de contato">
+        {contactLinks.map((contact, index) => (
+          <div key={index} className={styles.linkItem} role="listitem">
+            <img 
+              src={contact.icon} 
+              alt="" 
+              className={styles.icon}
+              aria-hidden="true"
+            />
+            <a
+              href={contact.href}
+              className={styles.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={contact.ariaLabel}
+            >
+              {contact.label}
+            </a>
+          </div>
+        ))}
       </div>
 
       {/* Footer */}
@@ -92,4 +107,5 @@ const Contato: FC = () => {
   );
 };
 
+export { Contato };
 export default Contato;

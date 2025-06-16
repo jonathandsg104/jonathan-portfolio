@@ -1,21 +1,36 @@
 /* Estilos principais do Navbar */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: var(--title-color); /* Cor do título global (usando o azul padrão) */
+  background-color: var(--title-color);
   color: white;
-  border-radius: var(--border-radius); /* Borda arredondada global */
-  box-shadow: var(--shadow); /* Sombra global */
-
-  /* Adiciona espaçamento ao redor */
-  margin: 15px; /* Espaçamento igual em todos os lados */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin: 15px;
+  transition: all 0.3s ease;
 }
 
+/* Logo e link do logo */
 .navbarLogo {
-  font-size: 1.5rem; /* Pode ser variável, se reutilizado */
+  font-size: 1.5rem;
   font-weight: bold;
+  z-index: 1001;
+}
+
+.logoLink {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.logoLink:hover {
+  transform: scale(1.02);
 }
 
 .navbarHighlight {
@@ -23,24 +38,42 @@
   color: white;
   background-color: black;
   padding: 0.2rem 0.5rem;
-  border-radius: var(--border-radius); 
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.navbarHighlight:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Botão do menu (hambúrguer) */
 .navbarToggle {
-  display: none; /* Escondido em telas maiores */
+  display: none;
+  z-index: 1001;
 }
 
-.navbarToggle button {
+.menuButton {
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.menuButton:hover {
+  transform: scale(1.1);
+}
+
+.menuButton:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 /* Ícones */
 .icon {
-  width: 24px; /* Ícones reutilizam o mesmo tamanho */
+  width: 24px;
   height: 24px;
+  transition: transform 0.2s ease;
 }
 
 /* Links do menu */
@@ -48,6 +81,9 @@
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
 }
 
 .navbarLinks li {
@@ -60,37 +96,72 @@
   align-items: center;
   text-decoration: none;
   color: white;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.navLink:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 .navLink img {
   margin-right: 0.5rem;
 }
 
-.navLink:hover {
-  text-decoration: underline;
-}
-
-/* Menu recolhido em dispositivos menores */
-.menuOpen {
-  display: flex !important;
-  flex-direction: column;
-  gap: 1rem;
+.navLink:hover .icon {
+  transform: scale(1.1);
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
+  .navbar {
+    margin: 0;
+    border-radius: 0;
+  }
+
   .navbarToggle {
-    display: block; /* Botão hambúrguer visível em telas menores */
+    display: block;
   }
 
   .navbarLinks {
-    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--title-color);
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
   }
 
   .menuOpen {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navLink {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+/* Prevenção de scroll quando menu está aberto */
+@media (max-width: 768px) {
+  body.menu-open {
+    overflow: hidden;
   }
 }
