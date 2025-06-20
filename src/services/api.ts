@@ -1,25 +1,5 @@
-// Configuração dinâmica da URL da API
-const getApiUrl = (): string | null => {
-  // Se estiver em desenvolvimento local
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return 'http://localhost:5000';
-  }
-  
-  // Se estiver acessando via IP local (ex: 192.168.x.x)
-  if (window.location.hostname.startsWith('192.168.') || 
-      window.location.hostname.startsWith('10.') || 
-      window.location.hostname.startsWith('172.')) {
-    // Usa o mesmo IP do frontend mas na porta 5000
-    return `http://${window.location.hostname}:5000`;
-  }
-  
-  // Em produção (HTTPS), usar dados estáticos por enquanto
-  // TODO: Implementar backend em produção com HTTPS
-  console.warn('Modo produção: usando dados estáticos para projetos');
-  return null; // Indica que deve usar dados estáticos
-};
-
-const API_URL = getApiUrl();
+// Usar proxy configurado no package.json para desenvolvimento
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
 
 // Dados estáticos para produção
 const STATIC_PROJECTS: Project[] = [
@@ -46,12 +26,6 @@ export interface Project {
 
 export const api = {
   auth: async (password: string): Promise<boolean> => {
-    // Se não há API_URL (produção), não permite autenticação
-    if (!API_URL) {
-      console.warn('Autenticação não disponível em produção');
-      return false;
-    }
-    
     try {
       const response = await fetch(`${API_URL}/auth`, {
         method: 'POST',
@@ -69,11 +43,6 @@ export const api = {
   },
 
   getProjects: async (): Promise<Project[]> => {
-    // Se não há API_URL (produção), retorna dados estáticos
-    if (!API_URL) {
-      return STATIC_PROJECTS;
-    }
-    
     try {
       const response = await fetch(`${API_URL}/projetos`);
       const data = await response.json();
@@ -85,12 +54,6 @@ export const api = {
   },
 
   addProject: async (project: Omit<Project, 'id'>): Promise<Project | null> => {
-    // Se não há API_URL (produção), não permite adicionar
-    if (!API_URL) {
-      console.warn('Adição de projetos não disponível em produção');
-      return null;
-    }
-    
     try {
       const response = await fetch(`${API_URL}/projetos`, {
         method: 'POST',
@@ -108,12 +71,6 @@ export const api = {
   },
 
   deleteProject: async (id: string): Promise<boolean> => {
-    // Se não há API_URL (produção), não permite deletar
-    if (!API_URL) {
-      console.warn('Deleção de projetos não disponível em produção');
-      return false;
-    }
-    
     try {
       const response = await fetch(`${API_URL}/projetos/${id}`, {
         method: 'DELETE',
