@@ -7,7 +7,7 @@ const STATIC_PROJECTS: Project[] = [
     id: '1',
     title: 'Beautysaloon',
     description: 'Projeto Web Site para um salão de beleza',
-    url: 'https://github.com/jonathansilva/beautysaloon'
+    url: 'https://github.com/jonathandsg104'
   },
   {
     id: '2',
@@ -45,6 +45,9 @@ export const api = {
   getProjects: async (): Promise<Project[]> => {
     try {
       const response = await fetch(`${API_URL}/projetos`);
+      if (!response.ok) {
+        throw new Error(`Erro na resposta: ${response.status}`);
+      }
       const data = await response.json();
       return data;
     } catch (error) {
@@ -62,6 +65,10 @@ export const api = {
         },
         body: JSON.stringify(project),
       });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Erro na resposta: ${response.status} - ${text}`);
+      }
       const data = await response.json();
       return data;
     } catch (error) {
@@ -75,7 +82,11 @@ export const api = {
       const response = await fetch(`${API_URL}/projetos/${id}`, {
         method: 'DELETE',
       });
-      return response.ok;
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Erro na resposta: ${response.status} - ${text}`);
+      }
+      return true;
     } catch (error) {
       console.error('Erro ao deletar projeto:', error);
       return false;
